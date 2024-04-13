@@ -49,12 +49,13 @@ jobs:
               id: validate
               run: terraform validate
 
-            - name: Terraform paln
+            - name: Terraform plan
               id: plan
-              run: terraform plan no-color -input=false -out planfile
+              run: terraform plan -no-color -input=false -out planfile
               continue-on-error: true
-
+     
             - name: Terraform plan status
-              if: steps.plan.outcome =='failure'
-              run: exit 1
+              if: steps.plan.outcome == 'failure' 
+              run: exit 1     
+     
     
